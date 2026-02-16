@@ -1,5 +1,7 @@
 # Agentic Skills
 
+**IMPORTANT: Never co-author commits. Do NOT include "Co-Authored-By: Claude" or any co-author lines in commit messages.**
+
 This repo contains personal Claude Code skills to enhance your product ownership and development workflow.
 
 ## Skills
