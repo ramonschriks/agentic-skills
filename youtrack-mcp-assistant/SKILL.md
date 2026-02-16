@@ -24,10 +24,9 @@ This skill provides workflows for interacting with YouTrack via MCP to track pro
 
 Understanding the distinction between Epic and Sub-Epic determines how to present progression:
 
-### Epic Overview (e.g., ZIL-482)
+### Epic Overview
 - **Purpose**: Summarizes and prioritizes child sub-epics
 - **Content**: Index of sub-epics with MoSCoW priorities, owners, and brief descriptions
-- **Example**: ZIL-482 (Zilch v1.2 - Optima Zilch Ervaring)
 - **When to use**: High-level planning, quarterly reviews, resource allocation
 
 ```
@@ -35,13 +34,12 @@ Understanding the distinction between Epic and Sub-Epic determines how to presen
 
 | Sub-Epic | Priority | Owner |
 |----------|----------|-------|
-| [ZIL-xxx] Sub-Epic Name | 🔴 Must | person |
+| [ID] Sub-Epic Name | 🔴 Must | person |
 ```
 
-### Sub-Epic with Requirements (e.g., ZIL-3)
+### Sub-Epic with Requirements
 - **Purpose**: Contains detailed requirements (FRs), DoDs, and linked user stories
-- **Content**: Full FR tables, DoD checkboxes, UX Gap Analysis, related issues
-- **Example**: ZIL-3 (v1.1 - Sentio: Edit Flow Conversation Integration)
+- **Content**: FR tables, DoD checkboxes, UX Gap Analysis, related issues
 - **When to use**: Implementation planning, tracking MUST completion, PO compliance
 
 ```
@@ -49,10 +47,10 @@ Understanding the distinction between Epic and Sub-Epic determines how to presen
 
 | ID | Requirement | Priority | How & When |
 |----|-------------|----------|------------|
-| FR-01 | Agent is advisory... | 🔴 Must | ...
+| FR-01 | [Requirement text] | 🔴 Must | [Implementation guidance] |
 
 **DoD:**
-- [ ] Agent detects intent
+- [ ] [Checklist item]
 ```
 
 ### Key Difference
@@ -104,8 +102,8 @@ Map each requirement from the description to its linked user stories:
 
 | Section | FRs | Status | Linked User Stories |
 |---------|-----|--------|-------------------|
-| [Section 1] | FR-01 to FR-XX | ✅/🏃/📋 | Story1, Story2 |
-| [Section 2] | FR-XX to FR-XX | ✅/🏃/📋 | Story3 |
+| [Section 1] | FR-01 to FR-XX | ✅/🏃/📋 | [Story-IDs] |
+| [Section 2] | FR-XX to FR-XX | ✅/🏃/📋 | [Story-IDs] |
 
 **For each section:**
 - Extract all FRs (Functional Requirements) from the issue description
@@ -116,7 +114,7 @@ Map each requirement from the description to its linked user stories:
 
 | FR | Requirement | Story | Status |
 |----|-------------|-------|--------|
-| FR-XX | [Requirement text] | ZIL-XXX | ✅ Done |
+| FR-XX | [Requirement text] | [Story-ID] | ✅ Done |
 
 ### Remaining for MUST Completion
 
@@ -124,7 +122,7 @@ List what's still needed:
 
 | FR | Requirement | Story | Status |
 |----|-------------|-------|--------|
-| FR-XX | [Requirement text] | ZIL-XXX | 📋 To Do |
+| FR-XX | [Requirement text] | [Story-ID] | 📋 To Do |
 
 ---
 
@@ -135,8 +133,8 @@ List what's still needed:
 - Remaining: X
 
 **User Stories needed to complete all MUST requirements:**
-1. [ZIL-XXX] - [Story title] - [Status]
-2. [ZIL-XXX] - [Story title] - [Status]
+1. [Story-ID] - [Story title] - [Status]
+2. [Story-ID] - [Story title] - [Status]
 
 ---
 
@@ -275,7 +273,7 @@ Returns: Which sub-epics and user stories are missing FRs, NFRs, DoD, checklists
 
 **Example 1 — Get Progression (Sub-Epic)**
 ```
-What's the progression of ZIL-3?
+What's the progression of [SUB-EPIC-ID]?
 ```
 
 This will return the full progression analysis including:
@@ -287,7 +285,7 @@ This will return the full progression analysis including:
 
 **Example 2 — Get Epic Progression**
 ```
-How is ZIL-1 doing?
+How is [EPIC-ID] doing?
 ```
 
 **Example 3 — Query by Assignee**
@@ -307,7 +305,7 @@ Create a sub-epic "User Profile API" under PROJ-123 with description "Implement 
 
 **Example 6 — Get Status Summary**
 ```
-Show me the status of ZIL-3 - what user stories are done, what's in progress?
+Show me the status of [SUB-EPIC-ID] - what user stories are done, what's in progress?
 ```
 
 **Example 7 — Track Checklist Progress**
