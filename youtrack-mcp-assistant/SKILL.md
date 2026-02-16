@@ -22,15 +22,101 @@ This skill provides workflows for interacting with YouTrack via MCP to track pro
 
 ## Core Capabilities
 
-### 1. Get Epic Progression
+### 1. Get Epic/Sub-Epic Progression
 
-Query an epic and all its children (sub-epics, user stories, checklists) to get a complete progression overview.
+Query an epic or sub-epic and all its children to get a complete progression overview. Use this when the user asks for progression, status, or progress of an epic or sub-epic.
 
 ```
-Query: Get progression overview for epic [EPIC-ID]
+Query: Get progression overview for [EPIC-ID] or [SUB-EPIC-ID]
 ```
 
-Returns: Status summary, completion percentage, blocked items, sub-epics breakdown.
+**When user asks for "progression", "progress", "status", or "how is [epic/sub-epic] doing", ALWAYS use this format:**
+
+```
+## [EPIC/SUB-EPIC-ID] Progress Analysis
+
+### Overview
+
+| Metric | Value |
+|--------|-------|
+| Total Issues | X |
+| Completed | X |
+| In Progress | X |
+| To Do | X |
+| Completion | X% |
+
+---
+
+### [For Sub-Epics] User Stories Overview
+
+| Status | Count | Stories |
+|--------|-------|----------|
+| ✅ Done | X | List IDs |
+| 🏃‍♀️ In Progress | X | List IDs |
+| 📋 To Do | X | List IDs |
+
+---
+
+### [For Sub-Epics] MUST-Priority Requirements Mapping
+
+Map each requirement from the description to its linked user stories:
+
+| Section | FRs | Status | Linked User Stories |
+|---------|-----|--------|-------------------|
+| [Section 1] | FR-01 to FR-XX | ✅/🏃/📋 | Story1, Story2 |
+| [Section 2] | FR-XX to FR-XX | ✅/🏃/📋 | Story3 |
+
+**For each section:**
+- Extract all FRs (Functional Requirements) from the issue description
+- Map each FR to its related user stories from the linked issues
+- Show status per FR based on linked story status
+
+### Completed MUST Requirements
+
+| FR | Requirement | Story | Status |
+|----|-------------|-------|--------|
+| FR-XX | [Requirement text] | ZIL-XXX | ✅ Done |
+
+### Remaining for MUST Completion
+
+List what's still needed:
+
+| FR | Requirement | Story | Status |
+|----|-------------|-------|--------|
+| FR-XX | [Requirement text] | ZIL-XXX | 📋 To Do |
+
+---
+
+### Summary
+
+**Total MUST requirements: X**
+- Completed: X
+- Remaining: X
+
+**User Stories needed to complete all MUST requirements:**
+1. [ZIL-XXX] - [Story title] - [Status]
+2. [ZIL-XXX] - [Story title] - [Status]
+
+---
+
+### Key Findings
+
+- What are the blockers (if any)?
+- What's at risk?
+- Any dependencies?
+```
+
+**Steps to generate this:**
+
+1. **Fetch the issue** (epic or sub-epic) to get its description with requirements/FRs
+2. **Query children** - Get all user stories linked as `subtask of` or `parent for`
+3. **For each user story** - Get its status from custom fields
+4. **Parse requirements** - Extract FRs from the description (look for tables with FR-XX)
+5. **Map FRs to stories** - Use the "Related Issues" section in description to link FRs to stories
+6. **Calculate progress** - Count completed vs remaining
+7. **Format output** - Present in the format above
+
+---
 
 ### 2. Query Issues
 
@@ -146,37 +232,54 @@ Returns: Which sub-epics and user stories are missing FRs, NFRs, DoD, checklists
 
 ## Examples
 
-**Example 1 — Get Progression**
+**Example 1 — Get Progression (Sub-Epic)**
 ```
-What's the progression of epic PROJ-123?
+What's the progression of ZIL-3?
 ```
 
-**Example 2 — Query by Assignee**
+This will return the full progression analysis including:
+- Overview metrics
+- User stories status table
+- MUST requirements mapping
+- Completed vs remaining requirements
+- Summary with next steps
+
+**Example 2 — Get Epic Progression**
+```
+How is ZIL-1 doing?
+```
+
+**Example 3 — Query by Assignee**
 ```
 Show all user stories assigned to me in epic PROJ-123
 ```
 
-**Example 3 — Find Blocked Items**
+**Example 4 — Find Blocked Items**
 ```
 What items are currently blocked in the authentication epic?
 ```
 
-**Example 4 — Create Sub-Epic**
+**Example 5 — Create Sub-Epic**
 ```
 Create a sub-epic "User Profile API" under PROJ-123 with description "Implement REST endpoints for user profile management"
 ```
 
-**Example 5 — Track Checklist Progress**
+**Example 6 — Get Status Summary**
+```
+Show me the status of ZIL-3 - what user stories are done, what's in progress?
+```
+
+**Example 7 — Track Checklist Progress**
 ```
 Summarize all checklists and their completion status for sub-epic PROJ-456
 ```
 
-**Example 6 — PO Compliance Check**
+**Example 8 — PO Compliance Check**
 ```
 Check PO compliance for epic PROJ-123. Which sub-epics are missing FRs, NFRs, DoD, or stakeholder validation?
 ```
 
-**Example 7 — User Story Readiness**
+**Example 9 — User Story Readiness**
 ```
 Which user stories in sub-epic PROJ-456 are missing checklists or DoD?
 ```
