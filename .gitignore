@@ -1,2 +1,5 @@
 # Claude Code project settings
 .claude/
+
+# MCP configuration (local only)
+.mcp.json

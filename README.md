@@ -21,9 +21,9 @@ Invoke skills directly in conversation:
 
 The YouTrack MCP is required for the YouTrack MCP Assistant and Product Owner Assistant skills to function.
 
-**Note:** The MCP configuration is stored in `.claude/settings.json`.
+**Note:** The MCP configuration is stored in `.mcp.json`.
 
-1. Copy `.claude/settings.json` from this project to yours
+1. Copy `.mcp.json` from this project to yours
 2. Update the token with your own:
 
 ```json
@@ -49,6 +49,6 @@ Add a new skill directory with a `SKILL.md` file following the product-owner-ass
 
 ## Note
 
-The `.claude/` directory contains local settings and is gitignored. It includes:
-- `settings.json` - MCP server configuration
-- `skills/` - Symlinks to installed skills
+The following files are gitignored and contain local settings:
+- `.mcp.json` - MCP server configuration
+- `.claude/skills/` - Symlinks to installed skills
