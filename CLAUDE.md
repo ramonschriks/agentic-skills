@@ -4,12 +4,7 @@
 
 This repo contains personal Claude Code skills to enhance your product ownership and development workflow.
 
-## Skills
-
-| Skill | Description |
-|-------|-------------|
-| Product Owner Assistant | Epic/sub-epic creation, requirements structuring, sprint planning, YouTrack MCP integration |
-| YouTrack MCP Assistant | YouTrack MCP for progression overviews, issue queries, dependency tracking, and issue management |
+The **Skills Index** is defined in README.md and should be interpreted from there.
 
 ## Skills Installation
 
