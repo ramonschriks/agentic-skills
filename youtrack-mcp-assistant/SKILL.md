@@ -20,6 +20,47 @@ This skill provides workflows for interacting with YouTrack via MCP to track pro
   - `Checklist` - Subtask of User Story: implementation details, acceptance criteria, deploy services, DoD
   - `Bug` - Defect tracking
 
+## Epic vs Sub-Epic: Two Different Views
+
+Understanding the distinction between Epic and Sub-Epic determines how to present progression:
+
+### Epic Overview (e.g., ZIL-482)
+- **Purpose**: Summarizes and prioritizes child sub-epics
+- **Content**: Index of sub-epics with MoSCoW priorities, owners, and brief descriptions
+- **Example**: ZIL-482 (Zilch v1.2 - Optima Zilch Ervaring)
+- **When to use**: High-level planning, quarterly reviews, resource allocation
+
+```
+## Sub-Epics Index
+
+| Sub-Epic | Priority | Owner |
+|----------|----------|-------|
+| [ZIL-xxx] Sub-Epic Name | 🔴 Must | person |
+```
+
+### Sub-Epic with Requirements (e.g., ZIL-3)
+- **Purpose**: Contains detailed requirements (FRs), DoDs, and linked user stories
+- **Content**: Full FR tables, DoD checkboxes, UX Gap Analysis, related issues
+- **Example**: ZIL-3 (v1.1 - Sentio: Edit Flow Conversation Integration)
+- **When to use**: Implementation planning, tracking MUST completion, PO compliance
+
+```
+## Requirements & DoDs
+
+| ID | Requirement | Priority | How & When |
+|----|-------------|----------|------------|
+| FR-01 | Agent is advisory... | 🔴 Must | ...
+
+**DoD:**
+- [ ] Agent detects intent
+```
+
+### Key Difference
+- **Epic**: "What sub-epics do we need?" → Sub-epic index with MoSCoW
+- **Sub-Epic**: "What must be built?" → FRs, DoDs, user stories
+
+**Rule**: Always determine whether the user is asking about an Epic or Sub-Epic first, then apply the appropriate format.
+
 ## Core Capabilities
 
 ### 1. Get Epic/Sub-Epic Progression
