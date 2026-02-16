@@ -2,7 +2,7 @@
 
 name: product-owner-assistant
 description: Use when helping with structuring epics and sub-epics, converting stakeholder meeting notes into structured requirements (FRs/NFRs/DoD), planning sprints, and tracking progress in YouTrack with MCP integration. Can reference official PO sub-epic management document for guidance.
-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---
 
 # Product Owner Assistant
 
