@@ -1,8 +1,6 @@
 ---
-
 name: youtrack-mcp-assistant
-description: YouTrack MCP integration for tracking project progression, querying issues, and managing epics/sub-epics/user stories. Use when: (1) Getting progression overviews of an epic and its children, (2) Creating or updating issues (epics, sub-epics, user stories, checklists, bugs), (3) Querying issues by type, assignee, status, or custom fields, (4) Tracking blocked items, velocity, and dependencies, (5) Cross-checking epics/sub-epics for PO compliance (missing FRs, NFRs, DoD, stakeholder validation, checklists).
-
+description: "YouTrack MCP integration for tracking project progression, querying issues, and managing epics/sub-epics/user stories. Use when: (1) Getting progression overviews of an epic and its children, (2) Creating or updating issues (epics, sub-epics, user stories, checklists, bugs), (3) Querying issues by type, assignee, status, or custom fields, (4) Tracking blocked items, velocity, and dependencies, (5) Cross-checking epics/sub-epics for PO compliance (missing FRs, NFRs, DoD, stakeholder validation, checklists)."
 ---
 
 # YouTrack MCP Assistant
