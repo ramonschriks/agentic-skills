@@ -6,6 +6,15 @@ This repo contains personal Claude Code skills to enhance your product ownership
 
 The **Skills Index** is defined in README.md and should be interpreted from there.
 
+## Requirement Writing Guidelines
+
+When working with product requirements:
+- **Enhance and rephrase** raw input into properly formatted requirements
+- Don't take words literally - convert to professional, well-formed requirements
+- Use consistent terminology and structure
+- Include clear "What" and "Why" in each requirement
+- Format with proper priority indicators (🔴 Must, 🟡 Should, 🟢 Could)
+
 ## Skills Installation
 
 When the directory structure changes (new skills added, removed, or modified):
