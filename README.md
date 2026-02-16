@@ -2,17 +2,11 @@
 
 A personal collection of Claude Code skills designed to enhance your product ownership and development workflow.
 
-## Skills
+## Skills Index
 
-### Product Owner Assistant
-**Path:** `product-owner-assistant/`
-
-Your Product Owner sidekick for:
-- Converting stakeholder notes into structured requirements (FRs/NFRs/DoD)
-- Creating and refining epics and sub-epics
-- Sprint planning and backlog prioritization
-- Progress tracking via YouTrack MCP integration
-- Identifying missing validations and blocked items
+| Skill | Path | Description |
+|-------|------|-------------|
+| Product Owner Assistant | `product-owner-assistant/` | Epic/sub-epic creation, requirements structuring, sprint planning, YouTrack MCP integration |
 
 ## Usage
 
@@ -21,4 +15,4 @@ Invoke skills directly in conversation:
 
 ## Adding New Skills
 
-Add a new skill directory with a `SKILL.md` file following the product-owner-assistant template. Update the index in `CLAUDE.md` when adding new skills.
+Add a new skill directory with a `SKILL.md` file following the product-owner-assistant template. Update the index in this README when adding new skills.
