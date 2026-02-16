@@ -19,7 +19,7 @@ When working with product requirements:
 
 For tracking progress across sessions:
 
-1. **Memory Directory**: `/memory/` - contains dated session files (gitignored)
+1. **Memory Directory**: `./memory/` - contains dated session files (gitignored)
 2. **File Format**: `DD-MM-YYYY.md` - one file per day
 3. **Entry Format**: Each line is a brief contextual progression note
 4. **Checkpoint**: When continuing work, ALWAYS read the latest memory file first
