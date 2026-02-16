@@ -107,7 +107,7 @@ Map each requirement from the description to its linked user stories:
 
 **For each section:**
 - Extract all FRs (Functional Requirements) from the issue description
-- Map each FR to its related user stories from the linked issues
+- User stories are automatically linked via subtask relationship (query `subtask of: [SUB-EPIC-ID]`)
 - Show status per FR based on linked story status
 
 ### Completed MUST Requirements
@@ -151,7 +151,7 @@ List what's still needed:
 2. **Query children** - Get all user stories linked as `subtask of` or `parent for`
 3. **For each user story** - Get its status from custom fields
 4. **Parse requirements** - Extract FRs from the description (look for tables with FR-XX)
-5. **Map FRs to stories** - Use the "Related Issues" section in description to link FRs to stories
+5. **Map FRs to stories** - FRs are linked to user stories via subtask relationships (automatically linked in YouTrack)
 6. **Calculate progress** - Count completed vs remaining
 7. **Format output** - Present in the format above
 
