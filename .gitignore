@@ -3,3 +3,6 @@
 
 # MCP configuration (local only)
 .mcp.json
+
+# Session memory (local tracking)
+memory/
