@@ -267,6 +267,70 @@ Returns: Which sub-epics and user stories are missing FRs, NFRs, DoD, checklists
 5. **Query Checklists** - For each user story, check for child Checklist
 6. **Summarize Gaps** - List items missing required PO elements
 
+### Gap Analysis Workflow
+
+Identify MUST requirements without linked user stories.
+
+1. **Fetch Sub-Epic** - Get the sub-epic description to extract FRs
+2. **Query User Stories** - Get all stories under the sub-epic (`subtask of: [SUB-EPIC-ID]`)
+3. **Parse FRs** - Extract all FRs with 🔴 Must priority from description
+4. **Check Coverage** - Match each MUST FR to a user story
+5. **Report Gaps** - List uncovered MUST requirements
+
+**Output Format:**
+```
+## Gap Analysis: [SUB-EPIC-ID]
+
+| FR | Requirement | Priority | User Stories | Status |
+|----|-------------|----------|--------------|--------|
+| FR-01 | [Requirement text] | 🔴 Must | [ZIL-XXX] | ✅ |
+
+**Missing User Stories:**
+- None! All MUST requirements covered.
+
+**OR:**
+
+- FR-02: [Requirement text] - needs user story
+```
+
+### Epic Progress Overview Workflow
+
+Show overall progress of an Epic with progress bars.
+
+1. **Fetch Epic** - Get sub-epics index from description
+2. **Query Sub-Epics** - Get all sub-epics under the epic
+3. **For Each Sub-Epic:**
+   - Parse FRs from description (count by priority: 🔴🟡🟢)
+   - Query user stories and their states
+   - Calculate completion %
+4. **Generate Visual Output** - Progress bars + tables
+
+**Output Format:**
+```
+## [EPIC-ID] Progress Overview
+
+### Overall: ████████░░ 60% (12/20 FRs)
+
+### By Priority
+🔴 **Must:** ██████████░░ 80% (8/10)
+🟡 **Should:** ██████░░░░░ 50% (3/6)
+🟢 **Could:** ███░░░░░░░░ 30% (1/3)
+
+---
+
+### By Sub-Epic
+
+#### [ZIL-XXX]: [Sub-Epic Name] ██████████░░ 100%
+| State | Owner | Progress |
+|------|-------|----------|
+| 🚧 In Progress | @person | 100% |
+
+#### [ZIL-XXX]: [Sub-Epic Name] ████████░░░ 70%
+| State | Owner | Progress |
+|------|-------|----------|
+| ✍️ Grooming | @person | 70% |
+```
+
 ---
 
 ## Examples
@@ -321,6 +385,16 @@ Check PO compliance for epic PROJ-123. Which sub-epics are missing FRs, NFRs, Do
 **Example 9 — User Story Readiness**
 ```
 Which user stories in sub-epic PROJ-456 are missing checklists or DoD?
+```
+
+**Example 10 — Gap Analysis**
+```
+Show me gaps in ZIL-626. Which MUST requirements don't have user stories?
+```
+
+**Example 11 — Epic Progress Overview**
+```
+Show me the overall progress of ZIL-482 with progress bars
 ```
 
 ---
