@@ -67,16 +67,27 @@ When creating or updating requirements in YouTrack, use this format:
 
 ### Table Structure
 
-| ID | Requirement | Priority | How & When |
-|----|-------------|----------|------------|
-| **FR-01** | Agent operates in **dual mode**: Action-Driven OR Knowledge/Support | 🔴 Must | At conversation start, agent determines which mode applies... |
+| ID | Requirement | Priority | How & When | User Stories |
+|----|-------------|----------|-------------|--------------|
+| **FR-01** | Agent operates in **dual mode**: Action-Driven OR Knowledge/Support | 🔴 Must | At conversation start, agent determines which mode applies... | [ZIL-XXX] |
 
 ### Writing Requirements
 
-**Keep requirements concise** - avoid over-specifying or making assumptions:
+**FR titles should describe the outcome/state we want** (specific & measurable), not the task:
 
-- Write clear titles that describe **what** needs to be built
-- In "How & When", describe the **outcome** and **key scenarios**, not implementation details
+| ❌ Task-oriented | ✅ Outcome-oriented |
+|-----------------|---------------------|
+| Docker Swarm expansion | Production deployment auto-scales with 3+ worker nodes |
+| User authentication | Users can sign in with email/password |
+| Payment integration | Users can pay via Stripe |
+
+**How & When** should describe the **approach** to achieve the outcome (not repeat the title):
+
+- Describe the strategy/method
+- Keep it concise
+- Don't over-specify implementation details
+
+**General guidelines:**
 - **Always validate** unclear points with the user before adding requirements
 - If you have ideas, **propose** them as suggestions (e.g., "Would you like to include X?")
 - Don't identify vague requirements yourself - ask the user for clarification

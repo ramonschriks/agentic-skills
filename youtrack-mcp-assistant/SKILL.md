@@ -45,9 +45,9 @@ Understanding the distinction between Epic and Sub-Epic determines how to presen
 ```
 ## Requirements & DoDs
 
-| ID | Requirement | Priority | How & When |
-|----|-------------|----------|------------|
-| FR-01 | [Requirement text] | 🔴 Must | [Implementation guidance] |
+| ID | Requirement | Priority | How & When | User Stories |
+|----|-------------|----------|-------------|--------------|
+| FR-01 | [Requirement text] | 🔴 Must | [Implementation guidance] | [ZIL-XXX] |
 
 **DoD:**
 - [ ] [Checklist item]
