@@ -29,6 +29,13 @@ For tracking progress across sessions:
 - Use brief, contextual lines that capture what was done
 - When user says "continue" or starts new work, fetch latest memory file for context
 
+## Skill Updates
+
+When changing workflow outputs or formats:
+1. **Always reason** if the skill needs updating
+2. Update the skill to reflect the new correct behavior
+3. Commit changes to keep skills current
+
 **Example memory entry:**
 ```
 - ZIL-3: Added 7 FRs for Flow/Action Schema

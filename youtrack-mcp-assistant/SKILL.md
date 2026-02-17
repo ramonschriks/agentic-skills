@@ -300,35 +300,24 @@ Show overall progress of an Epic with progress bars.
 1. **Fetch Epic** - Get sub-epics index from description
 2. **Query Sub-Epics** - Get all sub-epics under the epic
 3. **For Each Sub-Epic:**
-   - Parse FRs from description (count by priority: 🔴🟡🟢)
-   - Query user stories and their states
+   - Query all user stories (`subtask of: [SUB-EPIC-ID]`)
+   - Count total US vs completed US (based on resolved/State field)
    - Calculate completion %
 4. **Generate Visual Output** - Progress bars + tables
+
+**IMPORTANT:** Track **User Story completion**, not FR completion. FRs define requirements, but US completion shows actual progress.
 
 **Output Format:**
 ```
 ## [EPIC-ID] Progress Overview
 
-### Overall: ████████░░ 60% (12/20 FRs)
-
-### By Priority
-🔴 **Must:** ██████████░░ 80% (8/10)
-🟡 **Should:** ██████░░░░░ 50% (3/6)
-🟢 **Could:** ███░░░░░░░░ 30% (1/3)
-
----
+### Overall: ██████░░░░░ 30% (14/47 US)
 
 ### By Sub-Epic
 
-#### [ZIL-XXX]: [Sub-Epic Name] ██████████░░ 100%
-| State | Owner | Progress |
-|------|-------|----------|
-| 🚧 In Progress | @person | 100% |
-
-#### [ZIL-XXX]: [Sub-Epic Name] ████████░░░ 70%
-| State | Owner | Progress |
-|------|-------|----------|
-| ✍️ Grooming | @person | 70% |
+| Sub-Epic | State | Owner | US Total | Done | Progress |
+|----------|-------|-------|----------|------|----------|
+| ZIL-XXX | 🚧 In Progress | @person | 10 | 2 | 20% |
 ```
 
 ---
