@@ -71,6 +71,16 @@ When creating or updating requirements in YouTrack, use this format:
 |----|-------------|----------|------------|
 | **FR-01** | Agent operates in **dual mode**: Action-Driven OR Knowledge/Support | 🔴 Must | At conversation start, agent determines which mode applies... |
 
+### Writing Requirements
+
+**Keep requirements concise** - avoid over-specifying or making assumptions:
+
+- Write clear titles that describe **what** needs to be built
+- In "How & When", describe the **outcome** and **key scenarios**, not implementation details
+- **Always validate** unclear points with the user before adding requirements
+- If you have ideas, **propose** them as suggestions (e.g., "Would you like to include X?")
+- Don't identify vague requirements yourself - ask the user for clarification
+
 ### Priority Legend
 - 🔴 **Must** - Critical requirement, must be implemented
 - 🟡 **Should** - Important requirement, should be implemented
@@ -129,7 +139,15 @@ Brief context about what changed (e.g., old manual UI → new conversational flo
      * Link dependent stories
      * Write a clear Definition of Done (checkable)
      * Compile a checklist to follow
-3. **Reference PO Document**
+3. **User Story Template**
+
+   * **DO NOT** use "Maintainers" field - that's only for Epics/Sub-Epics
+   * Use **Assignee** to indicate who owns the story
+   * Keep title and description concise
+   * Link to parent Sub-Epic via "subtask of" relationship
+   * Link dependency relationships to other issues (e.g., "depends on: ZIL-XXX")
+   * Ask user which board to add the story to
+4. **Reference PO Document**
 
    * Use the YouTrack article for sample checklists, dependencies, and detailed DoD examples.
 
