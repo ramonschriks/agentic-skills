@@ -235,6 +235,163 @@ Identify gaps and flag items that need discussion with UX.
 
 ---
 
+## 📊 Epic Progression Overview
+
+When tracking epic/sub-epic progress, use this optimized format with ASCII progress bars:
+
+### Quick Status Command
+
+```
+Get full progression status for [EPIC-ID]
+```
+
+### Output Format Template
+
+```markdown
+# [EPIC-ID]: [Epic Title]
+
+**State:** [State] | **Priority:** [Priority] | **Estimation:** [Est]
+
+---
+
+## Sub-Epic Progress Overview
+
+```
+┌─────────────────────────────────────────────────────────────────────────────┐
+│  SUB-EPIC              │ OWNER    │ STATE        │ PROGRESS              │
+├─────────────────────────────────────────────────────────────────────────────┤
+│  [ID] [Title]          │ @owner   │ [State]      │ [██████████] 100%    │
+└─────────────────────────────────────────────────────────────────────────────┘
+```
+
+---
+
+## Detailed Breakdown
+
+### [X]: [Sub-Epic Name]
+**Owner:** @owner | **Est:** [Est] | **Priority:** [Prio]
+
+```
+FR Progress: [████░░░░░░] X/Y complete
+DoD:        [██░░░░░░░░] X/Y complete
+```
+
+| FR | Requirement | Prio | Status |
+|----|-------------|------|--------|
+| FR-01 | Description | 🔴 | ✅/⏳/🚧 |
+
+**User Stories:** X total (Y done)
+```
+[ID]: [Title] │ [State] @assignee
+```
+
+**🚨 Blockers:** [None /具体 blocker]
+```
+
+### Progress Bar Legend
+
+- `[██████████]` = 100%
+- `[▓▓▓▓▓▓░░░░░]` = 60%
+- `[▓▓▓▓░░░░░░░]` = 40%
+- `[▓▓░░░░░░░░░]` = 20%
+- `[░░░░░░░░░░░]` = 0%
+
+### Status Icons
+
+| Icon | Meaning |
+|------|---------|
+| ✅ | Complete/Done |
+| 🚧 | In Progress |
+| ⏳ | To Do / Not Started |
+| 🔍 | Discovering |
+| ✍️ | Grooming & Shaping |
+| 🔴 | Must (Priority) |
+| 🟡 | Should (Priority) |
+| 🟢 | Could (Priority) |
+
+---
+
+## 🎯 Sprint Breakdown
+
+When planning sprints:
+
+1. **Identify Sprint-Ready Stories**
+   - Filter by: State = "Ready for Sprint" or groomed
+   - Check dependencies are resolved
+
+2. **Estimate Capacity**
+   - Review team velocity from previous sprints
+   - Account for PTO, meetings, other commitments
+
+3. **Prioritize by**
+   - Critical path items first
+   - Unblock other work
+   - High-value user stories
+
+4. **Output Sprint Table**
+
+```markdown
+## Sprint [N] ([Date Range])
+
+| Priority | User Story | Assignee | Points | Dependencies |
+|----------|------------|----------|--------|--------------|
+| 1 | [ZIL-XXX] Title | @name | X | None |
+```
+
+---
+
+## 🚨 Blocker Tracking
+
+### Blockers Section
+
+Include at end of each sub-epic:
+
+```
+**🚨 Blockers:**
+- [None identified]
+- OR [具体 blocker description - issue ID if applicable]
+```
+
+### Dependency Graph
+
+For critical paths:
+
+```markdown
+## 🎯 Critical Path
+
+[Sub-Epic-A] ──┬──> [Sub-Epic-B]
+               └──> [Sub-Epic-C]
+                      │
+                      ▼
+               [Epic Completion]
+```
+
+---
+
+## 🧪 Examples
+
+**Example Prompt 1 — Full Progression**
+
+```
+Give me a full progression status for ZIL-482
+```
+
+**Example Prompt 2 — Sprint Planning**
+
+```
+What items are sprint-ready for ZIL-482?
+Break down by priority and estimate capacity for 2-week sprint.
+```
+
+**Example Prompt 3 — Blocker Analysis**
+
+```
+What are the current blockers for ZIL-620?
+Show dependency chain and suggest unblocking order.
+```
+
+---
+
 ## 📌 Best Practices
 
 * Provide as much context as possible (notes, goals, deadlines).
@@ -245,3 +402,5 @@ Identify gaps and flag items that need discussion with UX.
 * Conduct UX Gap Analysis when introducing major product changes.
 * Always review new requirements with PO before publishing.
 * Refer to the official PO document when unsure about workflows, DoD, or templates.
+* Use ASCII progress bars for visual sprint tracking
+* Highlight blockers prominently at sub-epic level
