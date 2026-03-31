@@ -388,6 +388,75 @@ Show me the overall progress of ZIL-482 with progress bars
 
 ---
 
+## UX User Stories
+
+UX User Stories follow a specific template structure with iteration checklists. Use this when creating UX design work under a UX Sub-Epic.
+
+### UX Story Hierarchy
+
+```
+UX Sub-Epic (e.g., ZIL-935)
+└── UX User Story (from Template)
+    ├── Checklist: Iteration 1 - Wireframing
+    ├── Checklist: Iteration 2 - Initial Design
+    └── Checklist: Iteration 3 - Final Design
+```
+
+### Creating UX Stories Workflow
+
+**Step 1: Find Templates**
+Fetch the UX Sub-Epic to find existing UX story templates:
+```
+Query: Get issues under [UX-SUB-EPIC-ID] with Type: Template
+```
+Look for UX Template user stories and their child Iteration Checklist templates.
+
+**Step 2: Duplicate Template**
+Duplicate the UX Template user story under the appropriate UX Sub-Epic:
+- Rename to specific screen/section name
+- Clear any placeholder/example content
+
+**Step 3: Create Iteration Checklists**
+Create 3 Iteration Checklist subtasks under the new UX story:
+- Type: Story Checklist
+- Link as `subtask of` parent UX story
+- Link dependencies: Iter 2 → Iter 1, Iter 3 → Iter 2
+- Set State: Parked (backlog), Estimation: 3d
+
+**Step 4: Extract & Populate**
+Interview stakeholder/user OR review existing brief to fill:
+- Problem Statement: What problem does this solve?
+- Success Criteria: Measurable KPIs
+- Constraints: Technical + Brand
+- Scope: In scope / Out of scope
+- Agreed Deliverables: What UX will produce
+- Stakeholders: Who approves, who gives feedback
+
+**Step 5: Review with PO**
+Present populated UX story:
+- Confirm scope boundaries
+- Align on success criteria
+- Get stakeholder sign-off (record in Brief Alignment section)
+
+### Key Differences: Dev vs UX Stories
+
+| Aspect | Dev User Story | UX User Story |
+|--------|---------------|---------------|
+| DoD scope | Implementation + testing | Iteration review + sign-off |
+| Structure | Single checklist | 3 iteration checklists |
+| Estimation | Story points | 3d per iteration (~1 week total) |
+| Review | PR/QA | Stakeholder review per iteration |
+| Handoff | Code to CI | Designs to dev via Figma |
+
+### UX Story States
+
+Use `State - Backlog` field:
+- 💤 Ungroomed: Not yet refined
+- ⏸️ Parked: Ready but not started
+- 🛠️ In Preparation: Being worked on
+
+---
+
 ## Best Practices
 
 - Always start queries from the Epic entry point
