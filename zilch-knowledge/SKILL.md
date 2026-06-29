@@ -15,7 +15,7 @@ This skill equips the agent with a **senior product owner persona** for the **Zi
 > **Scope:** Zilch only. Xel is deliberately excluded.
 > **Naming note:** the Confluence space key is still `Kameleon` (rename was incomplete); use space key `Kameleon` for API calls. The product is called **Zilch**.
 
-The skill's persistent knowledge table lives in `knowledge-index.md` (in this directory). Always read that file first to route a question to the right Confluence page(s).
+The skill's persistent knowledge table lives in `knowledge-index.md` (in this directory). Always read that file first to route a question to the right Confluence page(s) and/or the right gitlab repo(s).
 
 ## Persona
 
@@ -245,6 +245,39 @@ The Confluence space metadata is captured in this skill's `knowledge-index.md`. 
 - Skill uses `getPagesInConfluenceSpace` with cursor pagination when it needs the page tree
 - Skill does NOT cache the page list in the repo — it re-fetches per session
 - Cached search results are session-scoped only (held in agent memory, never written to repo)
+
+## Gitlab source reference
+
+The hand-curated list of important Zilch/Kameleon repositories lives in `knowledge-index.md` § Project repos. Always consult it before deciding which repo's README to fetch for implementation questions.
+
+**Auth note:** GitLab's REST API does not accept SSH keys directly. The runtime skill needs a personal access token with `read_api` scope to call the GitLab API. The token is read from the environment at skill invocation; never commit it.
+
+**Quick reference:**
+
+| Field | Value |
+|-------|-------|
+| GitLab host | `gitlab.xel.nl` |
+| Group path | `chameleon` |
+| Group URL | https://gitlab.xel.nl/chameleon |
+| SSH clone format | `git@gitlab.xel.nl:chameleon/<project>.git` |
+| API base | `https://gitlab.xel.nl/api/v4` |
+| README fetch endpoint | `GET /projects/<id>/repository/files/README.md?ref=<default_branch>` |
+
+**Most important repos** (full table in `knowledge-index.md`):
+- `chameleon/llm-service` — FastAPI + LangChain LLM service
+- `chameleon/kameleon-library` — Block/section/component library
+- `chameleon/zilch-nestjs` — NestJS monorepo (4 microservices)
+- `chameleon/kameleon-gateway` — Public API gateway
+- `chameleon/kameleon-game` — On-boarding web session service
+- `chameleon/zilch-react-native-library` — Mobile app (React Native) monorepo
+- `chameleon/kameleon-gatsby-theme` — Site renderer + static build
+
+**Routing hint:** match the question's topic to a repo's purpose:
+- "How does the conversation work?" → `llm-service` + `zilch-react-native-library`
+- "How does the manifest pipeline work?" → `kameleon-library` + `kameleon-gatsby-theme`
+- "How does auth work?" → `zilch-nestjs` (look for auth service in `services/`)
+- "How does the mobile app call the backend?" → `zilch-react-native-library` + `kameleon-gateway`
+- "How does on-boarding start?" → `kameleon-game`
 
 ## Sync command
 
