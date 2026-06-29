@@ -1,6 +1,12 @@
 # Zilch Knowledge Index
 
-> **Purpose:** Fast lookup table for the `zilch-knowledge` skill. Lets the skill route a Zilch question to the right Confluence page(s) and the right gitlab repo(s) before doing a full search.
+> ⚠️ **DEPRECATION NOTICE (2026-06-29):** This repo file is scaffolding only. The canonical index now lives in Confluence:
+>
+> 📄 **[Zilch Knowledge Index](https://xeldocs.atlassian.net/wiki/spaces/Kameleon/pages/351928321/Zilch+Knowledge+Index)** (Confluence page ID `351928321`)
+>
+> Future `/sync` writes to the Confluence page, not this file. Goal: remove this file entirely once the Confluence page is stable.
+
+> **Purpose (legacy):** Fast lookup table for the `zilch-knowledge` skill. Lets the skill route a Zilch question to the right Confluence page(s) and the right gitlab repo(s) before doing a full search.
 >
 > **Sources:**
 > - Confluence space `Kameleon` (`458757`) at `https://xeldocs.atlassian.net/wiki/spaces/Kameleon`
