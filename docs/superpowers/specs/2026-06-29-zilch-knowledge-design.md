@@ -294,12 +294,13 @@ Output:
 
 ## Implementation plan (high-level)
 
-1. Create `/Users/ramon/IdeaProjects/private/agentic-skills/zilch-knowledge/SKILL.md` with the frontmatter, persona, workflows, gates
-2. Update `/Users/ramon/IdeaProjects/private/agentic-skills/README.md` — add Skills Index row + Usage entry
-3. Create symlink: `.claude/skills/zilch-knowledge` → `../zilch-knowledge`
-4. Verify `.gitignore` excludes `.claude/`
-5. Run a manual smoke test with a real Zilch question
-6. Commit (no co-author line, per CLAUDE.md rule)
+1. ✅ **Done (during spec phase):** Created `/Users/ramon/IdeaProjects/private/agentic-skills/zilch-knowledge/knowledge-index.md` with hand-curated top-level summaries and auto-generated sub-page tree. The index is the skill's primary knowledge reference at runtime.
+2. Create `/Users/ramon/IdeaProjects/private/agentic-skills/zilch-knowledge/SKILL.md` with the frontmatter, persona, workflows, gates — must reference `knowledge-index.md` and document the `/sync` command (full-recreation procedure lives in `knowledge-index.md`)
+3. Update `/Users/ramon/IdeaProjects/private/agentic-skills/README.md` — add Skills Index row + Usage entry for `/zilch-knowledge`
+4. Create symlink: `.claude/skills/zilch-knowledge` → `../zilch-knowledge`
+5. Verify `.gitignore` excludes `.claude/`
+6. Run a manual smoke test with a real Zilch question
+7. Commit (no co-author line, per CLAUDE.md rule)
 
 ---
 
