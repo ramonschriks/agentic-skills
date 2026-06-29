@@ -275,7 +275,11 @@ The hand-curated list of important Zilch/Kameleon repositories lives in `knowled
 **Routing hint:** match the question's topic to a repo's purpose:
 - "How does the conversation work?" → `llm-service` + `zilch-react-native-library`
 - "How does the manifest pipeline work?" → `kameleon-library` + `kameleon-gatsby-theme`
-- "How does auth work?" → `zilch-nestjs` (look for auth service in `services/`)
+- "How do notifications work?" → `zilch-nestjs` → Notification service
+- "How does payments / Stripe work?" → `zilch-nestjs` → Commerce service
+- "How does layout selection work?" → `zilch-nestjs` → Layout service
+- "How is the manifest written/updated?" → `zilch-nestjs` → Profile service
+- "How do forms / form submissions work?" → `zilch-nestjs` → Forms service
 - "How does the mobile app call the backend?" → `zilch-react-native-library` + `kameleon-gateway`
 - "How does on-boarding start?" → `kameleon-game`
 
