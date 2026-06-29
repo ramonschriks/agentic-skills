@@ -219,3 +219,72 @@ Output:
 - Reading pages
 - Searching
 - Generating diffs/drafts in chat (drafts are not writes)
+
+## Confluence source reference
+
+The Confluence space metadata is captured in this skill's `knowledge-index.md`. Always read it first.
+
+**Quick reference:**
+
+| Field | Value |
+|-------|-------|
+| Space name | Kameleon (homepage titled "Zilch") |
+| Space key | `Kameleon` |
+| Space ID | `458757` |
+| Cloud ID | `e4341026-8b19-45f0-abae-2cad84b91235` |
+| Homepage ID | `458759` |
+| Space URL | https://xeldocs.atlassian.net/wiki/spaces/Kameleon/overview |
+
+**Naming note (captured 2026-06-29):**
+- The Confluence space key is still `Kameleon` (rename was incomplete)
+- The homepage is titled "Zilch"
+- Product docs are mostly Zilch-branded, but several page titles still contain "Kameleon"
+- `/doc-audit` reports should flag title-level naming inconsistencies as doc-improvement candidates
+
+**Runtime behavior:**
+- Skill uses `getPagesInConfluenceSpace` with cursor pagination when it needs the page tree
+- Skill does NOT cache the page list in the repo — it re-fetches per session
+- Cached search results are session-scoped only (held in agent memory, never written to repo)
+
+## Sync command
+
+**Skill command:** `/zilch-knowledge /sync`
+
+Fully regenerates `knowledge-index.md` from the live Confluence space. Full recreation — incremental updates are NOT supported.
+
+For the complete 9-step sync procedure (fetch → classify → fetch top-level bodies → build table → recompute staleness → write → show diff → approve → commit), see `knowledge-index.md` § Sync.
+
+## Example prompts
+
+**Example 1 — Grounded answer**
+```
+/zilch-knowledge
+How does the standalone auth flow work for Zilch?
+```
+Expected: Reads `knowledge-index.md` to route → fetches Login & Authentication page → summarizes with sources → validates before answering.
+
+**Example 2 — Doc-improvement proposal**
+```
+/zilch-knowledge
+I'm working on ZIL-618 — is our Confluence doc on the standalone flow still accurate?
+```
+Expected: Fetches doc, compares to current YouTrack + git state, proposes update if stale.
+
+**Example 3 — Doc freshness audit**
+```
+/zilch-knowledge /doc-audit space=Zilch
+```
+Expected: Produces freshness report table.
+
+**Example 4 — Validation gate enforcement**
+```
+/zilch-knowledge
+Should we deprecate the customerReference field?
+```
+Expected: Searches Confluence for existing decisions, surfaces them, asks user to confirm before any write.
+
+**Example 5 — Trigger a sync**
+```
+/zilch-knowledge /sync
+```
+Expected: Runs the 9-step procedure from `knowledge-index.md` § Sync, shows diff, waits for user approval before commit.
