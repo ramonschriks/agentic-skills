@@ -306,8 +306,37 @@ Output:
 ## Open questions for implementation phase
 
 - List of known Zilch git repos for README fetching — to be collected from user during implementation
-- Confluence space key for Zilch — to be confirmed
+- ~~Confluence space key for Zilch — to be confirmed~~ **Resolved:** see `## Confluence source reference` below
 - Default staleness threshold (currently 6 months) — confirm acceptable
+
+---
+
+## Confluence source reference
+
+> **Design principle:** the spec stores **pointers** to Confluence, not page content. Page enumeration, fetching, and freshness analysis happen **at skill runtime**, not by snapshotting into the repo.
+
+**Zilch's Confluence space (formerly Kameleon):**
+
+| Field | Value |
+|-------|-------|
+| Space name | Kameleon (homepage titled "Zilch") |
+| Space key | `Kameleon` |
+| Space ID | `458757` |
+| Cloud ID | `e4341026-8b19-45f0-abae-2cad84b91235` |
+| Homepage ID | `458759` |
+| Space URL | https://xeldocs.atlassian.net/wiki/spaces/Kameleon/overview |
+| Host | xeldocs.atlassian.net |
+
+**Naming note (captured 2026-06-29):**
+- The Confluence space key is still `Kameleon` (rename was incomplete)
+- The homepage is titled "Zilch"
+- Product docs are mostly Zilch-branded, but several page titles still contain "Kameleon" (e.g., "Test plan - Kameleon Builder App")
+- Future `/doc-audit` reports should flag title-level naming inconsistencies as doc-improvement candidates
+
+**Runtime behavior:**
+- Skill uses `getPagesInConfluenceSpace` with cursor pagination when it needs the page tree
+- Skill does NOT cache the page list in the repo — it re-fetches per session
+- Cached search results are session-scoped only (held in agent memory, never written to repo)
 
 ---
 
