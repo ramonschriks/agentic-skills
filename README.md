@@ -8,12 +8,14 @@ A personal collection of Claude Code skills designed to enhance your product own
 |-------|------|-------------|
 | Product Owner Assistant | [product-owner-assistant/](product-owner-assistant/) | Epic/sub-epic creation, requirements structuring, sprint planning, YouTrack MCP integration |
 | YouTrack MCP Assistant | [youtrack-mcp-assistant/](youtrack-mcp-assistant/) | YouTrack MCP for progression overviews, issue queries, dependency tracking, and issue management |
+| Zilch Knowledge | [zilch-knowledge/](zilch-knowledge/) | Confluence-grounded Zilch answers, doc-improvement proposals, validation gate. Knowledge table in [knowledge-index.md](zilch-knowledge/knowledge-index.md). |
 
 ## Usage
 
 Invoke skills directly in conversation:
 - `/product-owner-assistant` - Activate PO assistant
 - `/youtrack-mcp-assistant` - Activate YouTrack MCP assistant
+- `/zilch-knowledge` - Activate Zilch PO persona with Confluence grounding
 
 ## Required Setup
 
