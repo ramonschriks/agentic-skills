@@ -97,17 +97,25 @@ A 6-step workflow whenever invoked for a Zilch question.
 
 ## Knowledge source layering
 
-Two sources, used in combination:
+Three sources, used in combination:
 
 | Source | Role | Strength | Weakness |
 |--------|------|----------|----------|
 | **Confluence** | Canonical for product decisions (why, what, who, when) | Authoritative, reviewed | Often stale — devs don't update it |
 | **Git service READMEs** | Fresh implementation source (how flows actually work) | Current — devs update these frequently | No editorial review; can drift from intent |
+| **Conversation-core libraries in zilch-nestjs** | Canonical JSON schemas (manifest, flow/action definitions) | Single source of truth for both client and server (auto-generates TS + Python types) | Schema only — runtime behavior lives in the consumer services |
+
+**The conversation-core libraries** (in `chameleon/zilch-nestjs`):
+- **[manifest-helper](https://gitlab.xel.nl/chameleon/zilch-nestjs/-/blob/master/libs/manifest-helper/README.md)** — manifest schemas (pages, sections, meta, layouts, colors, themes, fonts, content). Version-controlled TypeScript API with auto-upgrade on save. **The manifest lives here, NOT in Sentio / llm-service.**
+- **[conversation-driver](https://gitlab.xel.nl/chameleon/zilch-nestjs/-/blob/master/libs/conversation-driver/README.md)** — flow/action schemas per flow type and version. Currently supported: `accounting` (web dashboard) and `edit-flow` (App-only).
+
+When asked about the manifest, action sets, or schema evolution, link to these libraries, NOT to the Sentio service.
 
 **Rules:**
 - For **product decisions** (scope, priority, naming, policy): Confluence first
 - For **implementation/flow questions** (how X works): git READMEs first (more current)
-- For **gap detection**: cross-reference both — discrepancies surface as doc-improvement candidates
+- For **schema questions** (what fields exist, how flows are defined): conversation-core libraries first
+- For **gap detection**: cross-reference all three — discrepancies surface as doc-improvement candidates
 
 ## Doc-improvement workflow
 
