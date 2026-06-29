@@ -266,13 +266,14 @@ The hand-curated list of important Zilch/Kameleon repositories lives in `knowled
 **Most important repos** (full table in `knowledge-index.md`):
 - `chameleon/llm-service` — FastAPI + LangChain LLM service
 - `chameleon/kameleon-library` — Block/section/component library
-- `chameleon/zilch-nestjs` — NestJS monorepo (4 microservices)
+- `chameleon/zilch-nestjs` — NestJS monorepo (5 microservices)
 - `chameleon/kameleon-gateway` — Public API gateway
 - `chameleon/kameleon-game` — On-boarding web session service
 - `chameleon/zilch-react-native-library` — Mobile app (React Native) monorepo
 - `chameleon/kameleon-gatsby-theme` — Site renderer + static build
 
 **Routing hint:** match the question's topic to a repo's purpose:
+- "What is Zilch / where do I start?" → Confluence page `458972` (Home) first; cross-reference `296878081` (Unified Messaging Protocol) and `219938817` (Sentio RPC) for the current architecture
 - "How does the conversation work?" → `llm-service` + `zilch-react-native-library`
 - "How does the manifest pipeline work?" → `kameleon-library` + `kameleon-gatsby-theme`
 - "How do notifications work?" → `zilch-nestjs` → Notification service
@@ -289,7 +290,7 @@ The hand-curated list of important Zilch/Kameleon repositories lives in `knowled
 
 Fully regenerates `knowledge-index.md` from the live Confluence space. Full recreation — incremental updates are NOT supported.
 
-For the complete 9-step sync procedure (fetch → classify → fetch top-level bodies → build table → recompute staleness → write → show diff → approve → commit), see `knowledge-index.md` § Sync.
+For the complete 10-step sync procedure (fetch → classify → fetch top-level bodies → build table → recompute staleness → write → preserve Project repos → show diff → approve → commit), see `knowledge-index.md` § Sync.
 
 ## Example prompts
 
@@ -324,4 +325,4 @@ Expected: Searches Confluence for existing decisions, surfaces them, asks user t
 ```
 /zilch-knowledge /sync
 ```
-Expected: Runs the 9-step procedure from `knowledge-index.md` § Sync, shows diff, waits for user approval before commit.
+Expected: Runs the 10-step procedure from `knowledge-index.md` § Sync, shows diff, waits for user approval before commit.

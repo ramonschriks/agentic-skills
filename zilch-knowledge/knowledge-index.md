@@ -63,6 +63,7 @@
 | ID | Title | Last Updated | Covers |
 |----|-------|--------------|--------|
 | [`458759`](https://xeldocs.atlassian.net/wiki/spaces/Kameleon/pages/458759) | **Zilch** (homepage) | 2025-05-13 | **STUB.** Marketing blurb only — emoji ladder, no architecture, no links. Rename from Kameleon is incomplete (`~~Kameleon~~ Zilch 🦎` + body still says "This is the documentation for Kameleon"). **For architecture, use Home (458972) instead.** Flagged 2026-06-29 for doc-improvement. |
+| [`458972`](https://xeldocs.atlassian.net/wiki/spaces/Kameleon/pages/458972) | **Home** (child of 458759) | 2026-02-19 | **The actual architectural overview.** Project summary, 4 main application flows (start project → second-screen → update preview → deploy), service catalog (Builder, Second Screen, Previews/Builds via GatsbyJS, Manifest, Gateway, Game, Profile, Verdaccio, Library), and legacy repo list. **⚠️ Partially stale** — service descriptions pre-date the Unified Messaging Protocol + Sentio RPC work (see `296878081`, `219938817`); 6/10 listed repos are stale. **Recommended starting page for any architecture question.** |
 | [`85590034`](https://xeldocs.atlassian.net/wiki/spaces/Kameleon/pages/85590034) | **Choosing a backend framework** | 2024-08-06 | Comparative research (Aug 2024) evaluating Django, Flask, and FastAPI for the LLM-Service backend. Concludes with FastAPI as the chosen framework due to modern async support, OpenAPI integration, and low boilerplate. **Stale — pre-dates v0.9 release.** |
 | [`86245396`](https://xeldocs.atlassian.net/wiki/spaces/Kameleon/pages/86245396) | **Choosing an LLM framework** | 2024-08-06 | MoSCoW-evaluated comparison of LlamaIndex, DSPy, and LangChain. Decision: use **LangChain for v0.9**, re-evaluate post-release. **Stale — pre-dates v0.9 release.** |
 | [`292978689`](https://xeldocs.atlassian.net/wiki/spaces/Kameleon/pages/292978689) | **Concept: Background Agents** | 2026-03-10 | Research document on durable background execution for Sentio's voice-to-voice edit flow. Proposes a foreground/background split with `BackgroundJobDispatcher` + `JobStore` + `sentio-worker` triad built on Valkey Streams. Solves the problem that long-running build actions (5–30s) block voice responsiveness (1–2s requirement). |
@@ -224,9 +225,10 @@
 When a Zilch question arrives, the skill should consult pages in this order based on topic:
 
 ### Architecture & protocol
-1. **Zilch Unified Messaging Protocol** (`296878081`) — multi-client messaging, capability negotiation
-2. **Concept: Background Agents** (`292978689`) — durable background execution
-3. **Sentio RPC** (`219938817`) — gRPC service layer
+1. **Home** (`458972`, child of 458759) — **start here for any architecture question.** Has the service catalog + flow overview. ⚠️ Partially stale — pre-dates the messaging protocol + Sentio RPC redesigns.
+2. **Zilch Unified Messaging Protocol** (`296878081`) — multi-client messaging, capability negotiation (the proposed replacement for the single-client WebSocket architecture on 458972)
+3. **Concept: Background Agents** (`292978689`) — durable background execution (replaces synchronous InvocationNode described on 458972)
+4. **Sentio RPC** (`219938817`) — gRPC service layer (the proposed service topology)
 
 ### Brand & content generation
 1. **Concept: Brand Identity Envelopes** (`291373057`) — bounded brand constraints
