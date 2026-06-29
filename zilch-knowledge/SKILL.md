@@ -94,3 +94,128 @@ A 6-step workflow whenever invoked for a Zilch question.
 **Validation needed:**
 <list of assumptions or gaps>
 ```
+
+## Knowledge source layering
+
+Two sources, used in combination:
+
+| Source | Role | Strength | Weakness |
+|--------|------|----------|----------|
+| **Confluence** | Canonical for product decisions (why, what, who, when) | Authoritative, reviewed | Often stale — devs don't update it |
+| **Git service READMEs** | Fresh implementation source (how flows actually work) | Current — devs update these frequently | No editorial review; can drift from intent |
+
+**Rules:**
+- For **product decisions** (scope, priority, naming, policy): Confluence first
+- For **implementation/flow questions** (how X works): git READMEs first (more current)
+- For **gap detection**: cross-reference both — discrepancies surface as doc-improvement candidates
+
+## Doc-improvement workflow
+
+Two triggers:
+
+### Trigger 1 — Encountered staleness
+During Step 2 (READ), if a fetched Confluence page is:
+- > 6 months old AND topic is active in YouTrack, OR
+- Contradicts user-stated intent, OR
+- Has broken links / missing sections / placeholder content
+
+→ Skill flags inline:
+```
+I noticed [ZIL-A-XX] was last updated [date] and may be stale.
+Want me to draft a doc-improvement proposal?
+```
+
+If user says yes → enter the **Draft Proposal** sub-workflow below.
+
+### Trigger 2 — `/doc-audit`
+Periodic freshness audit. Explicit invocation:
+
+```
+/zilch-knowledge /doc-audit [optional: space=Zilch]
+```
+
+Output:
+```markdown
+## Doc Freshness Report — [Space]
+**Date:** YYYY-MM-DD
+
+### Stale (> 6 months, no updates)
+| Page | Last Updated | Linked From | Risk |
+|------|--------------|-------------|------|
+| ZIL-A-42 | 2025-09-12 | 3 pages | High (impacts auth flow) |
+
+### Recently Updated (last 30 days)
+| Page | Updated By |
+|------|------------|
+| ZIL-A-17 | @ramon |
+
+### Broken/Missing
+| Page | Issue |
+|------|-------|
+| ZIL-A-99 | Title placeholder, never filled |
+
+### Confluence vs Git README drift
+| Topic | Confluence says | Git README says |
+|-------|-----------------|------------------|
+| Auth flow | X | Y |
+
+### Proposed Improvements
+<list — drafts only produced after user OKs each>
+```
+
+### Sub-workflow: Draft Proposal
+
+```
+1. Read current page state (full content)
+2. Identify gaps vs (a) latest YouTrack state (b) user's stated intent (c) current git README
+3. Draft proposed update as markdown diff or full page rewrite
+4. Present draft + reasoning to user
+5. APPROVAL GATE — see below
+6. On approval → publish to Confluence
+7. On rejection → archive draft, log rejection reason, ask what was wrong
+```
+
+## Approval gate
+
+**No write happens without explicit per-action user approval.** Period.
+
+### Approval gate format (always shown before any write)
+
+```markdown
+## Proposed Confluence Write
+
+**Action:** Create new page | Update existing page | Add comment | Rename
+**Target:** [Page title or new path]
+**Reason:** [Why this change]
+
+**Diff / Draft:**
+<full proposed content in markdown>
+
+**Source of changes:**
+- [ZIL-A-XX] (existing doc)
+- [ZIL-XXX] (YouTrack issue)
+- [service README] (git)
+- User-stated intent: "<quote>"
+
+**Approval needed:** Type `approve`, `edit <changes>`, or `reject`
+```
+
+### Behavior rules
+
+- `approve` → publish via Confluence MCP, return URL of written page
+- `edit <changes>` → re-draft with changes, re-present
+- `reject` → archive draft, log rejection reason, ask what was wrong
+- No response after 5 min → do NOT publish, surface reminder
+
+### What counts as a "write" (requires gate)
+
+- ✅ Creating new pages
+- ✅ Updating existing page body
+- ✅ Adding comments
+- ✅ Renaming pages
+
+### What does NOT require a gate
+
+- Reading pages
+- Searching
+- Generating diffs/drafts in chat (drafts are not writes)
