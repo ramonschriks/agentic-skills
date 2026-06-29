@@ -1,4 +1,4 @@
-# Zilch & Xel Knowledge Skill — Design Spec
+# Zilch Knowledge Skill — Design Spec
 
 **Date:** 2026-06-29
 **Status:** Draft (pending user review)
@@ -8,13 +8,15 @@
 
 ## Purpose
 
-Add a new skill `zilch-xel-knowledge` to the `agentic-skills` repo that gives the agent a **senior product owner persona** for **Zilch** and **Xel** products, with **Confluence as the canonical source of truth** for product decisions and **git service READMEs** as the fresher implementation source. The skill enforces a strict validation discipline — no silent assumptions — and supports continuous Confluence improvement with explicit user-approval gates before any write.
+Add a new skill `zilch-knowledge` to the `agentic-skills` repo that gives the agent a **senior product owner persona** for the **Zilch** product, with **Confluence as the canonical source of truth** for product decisions and **git service READMEs** as the fresher implementation source. The skill enforces a strict validation discipline — no silent assumptions — and supports continuous Confluence improvement with explicit user-approval gates before any write.
+
+> **Scope note (2026-06-29):** Zilch only for now. Xel deliberately excluded; re-introduce in a future iteration once Zilch is stable.
 
 ---
 
 ## Goals
 
-- Ground every Zilch/Xel answer in real sources (Confluence + git READMEs), never invented
+- Ground every Zilch answer in real sources (Confluence + git READMEs), never invented
 - Surface and validate every assumption with the user before acting
 - Detect stale or missing Confluence docs and propose improvements
 - Maintain a strict approval gate for any Confluence write
@@ -23,7 +25,7 @@ Add a new skill `zilch-xel-knowledge` to the `agentic-skills` repo that gives th
 
 - This skill does NOT replace `product-owner-assistant` or `youtrack-mcp-assistant`
 - This skill does NOT write code or modify YouTrack issues
-- This skill does NOT operate on products other than Zilch and Xel
+- This skill does NOT operate on Xel or other products (Zilch only for now)
 
 ---
 
@@ -35,7 +37,7 @@ Single skill, single file, symmetrical with existing skills.
 agentic-skills/
 ├── product-owner-assistant/SKILL.md
 ├── youtrack-mcp-assistant/SKILL.md
-└── zilch-xel-knowledge/        ← NEW
+└── zilch-knowledge/            ← NEW
     └── SKILL.md
 ```
 
@@ -43,15 +45,15 @@ agentic-skills/
 
 ```yaml
 ---
-name: zilch-xel-knowledge
-description: Use when working on Zilch or Xel product topics — answers, decisions, or docs. Treats Confluence as canonical source for product decisions and git service READMEs as fresher implementation source. Activates on explicit invocation OR when Zilch/Xel is mentioned in combination with doc/Confluence/flow keywords. Validates every assumption; never invents product facts. Supports doc-improvement proposals with explicit approval gates before Confluence writes.
+name: zilch-knowledge
+description: Use when working on Zilch product topics — answers, decisions, or docs. Treats Confluence as canonical source for product decisions and git service READMEs as fresher implementation source. Activates on explicit invocation OR when Zilch is mentioned in combination with doc/Confluence/flow keywords. Validates every assumption; never invents product facts. Supports doc-improvement proposals with explicit approval gates before Confluence writes.
 ---
 ```
 
 ### Trigger model (hybrid, strict auto-trigger)
 
-- **Explicit:** `/zilch-xel-knowledge`
-- **Auto:** when the user's message references Zilch/Xel **AND** contains a doc/Confluence/flow/architecture keyword (e.g., "docs say", "check Confluence", "how does the flow work", "what's our policy on…")
+- **Explicit:** `/zilch-knowledge`
+- **Auto:** when the user's message references Zilch **AND** contains a doc/Confluence/flow/architecture keyword (e.g., "docs say", "check Confluence", "how does the flow work", "what's our policy on…")
 - **Out of scope triggers:**
   - Pure YouTrack ops → hand off to existing PO/YTrack skills
   - Unrelated products → do not activate
@@ -71,7 +73,7 @@ These are likely already configured globally. Verify before relying on them.
 
 ### Persona
 
-You are a senior product owner for **Zilch** and **Xel**. You know these products deeply, but your knowledge is bounded by **Confluence as the single source of truth** for product decisions and **git service READMEs** as the fresher implementation source. You never invent product facts. When uncertain, you ask — every assumption must be surfaced and validated before acting on it. You are precise, concise, and source every claim.
+You are a senior product owner for **Zilch**. You know this product deeply, but your knowledge is bounded by **Confluence as the single source of truth** for product decisions and **git service READMEs** as the fresher implementation source. You never invent product facts. When uncertain, you ask — every assumption must be surfaced and validated before acting on it. You are precise, concise, and source every claim.
 
 ### Validation discipline (3 enforced rules)
 
@@ -88,11 +90,11 @@ You are a senior product owner for **Zilch** and **Xel**. You know these product
 
 ## Core workflow: Search → Read → Summarize → Validate → 2nd-pass → Act
 
-A 6-step workflow whenever invoked for a Zilch/Xel question.
+A 6-step workflow whenever invoked for a Zilch question.
 
 ### Step 1 — SEARCH
 - Confluence search for the topic (default)
-- If topic involves implementation/flow: also git search across known Zilch/Xel service repos
+- If topic involves implementation/flow: also git search across known Zilch service repos
 - If no hits: STOP, ask user (no docs = no fabricated answer)
 - If hits: list titles + URLs + last-updated dates
 
@@ -188,7 +190,7 @@ If user says yes → enter Draft Proposal sub-workflow.
 Periodic freshness audit. Explicit invocation:
 
 ```
-/zilch-xel-knowledge /doc-audit [optional: space=Zilch|Xel]
+/zilch-knowledge /doc-audit [optional: space=Zilch]
 ```
 
 Output:
@@ -284,7 +286,7 @@ Output:
 ## Verification approach
 
 - **Worked examples:** Ship 3–4 example prompts in `SKILL.md` showing input → expected workflow output
-- **Manual smoke test:** After skill creation, run one real Zilch/Xel question end-to-end and observe behavior
+- **Manual smoke test:** After skill creation, run one real Zilch question end-to-end and observe behavior
 - **README updated** with the new skill entry pointing at the examples
 - **Iterate live:** During real use, refine the SKILL.md when gaps appear
 
@@ -292,19 +294,19 @@ Output:
 
 ## Implementation plan (high-level)
 
-1. Create `/Users/ramon/IdeaProjects/private/agentic-skills/zilch-xel-knowledge/SKILL.md` with the frontmatter, persona, workflows, gates
+1. Create `/Users/ramon/IdeaProjects/private/agentic-skills/zilch-knowledge/SKILL.md` with the frontmatter, persona, workflows, gates
 2. Update `/Users/ramon/IdeaProjects/private/agentic-skills/README.md` — add Skills Index row + Usage entry
-3. Create symlink: `.claude/skills/zilch-xel-knowledge` → `../zilch-xel-knowledge`
+3. Create symlink: `.claude/skills/zilch-knowledge` → `../zilch-knowledge`
 4. Verify `.gitignore` excludes `.claude/`
-5. Run a manual smoke test with a real Zilch/Xel question
+5. Run a manual smoke test with a real Zilch question
 6. Commit (no co-author line, per CLAUDE.md rule)
 
 ---
 
 ## Open questions for implementation phase
 
-- List of known Zilch/Xel git repos for README fetching — to be collected from user during implementation
-- Confluence space keys for Zilch and Xel — to be confirmed
+- List of known Zilch git repos for README fetching — to be collected from user during implementation
+- Confluence space key for Zilch — to be confirmed
 - Default staleness threshold (currently 6 months) — confirm acceptable
 
 ---
@@ -313,27 +315,27 @@ Output:
 
 **Example 1 — Grounded answer**
 ```
-/zilch-xel-knowledge
+/zilch-knowledge
 How does the standalone auth flow work for Zilch?
 ```
 Expected: Search Confluence + git READMEs, summarize with sources, validate before answering.
 
 **Example 2 — Doc-improvement proposal**
 ```
-/zilch-xel-knowledge
+/zilch-knowledge
 I'm working on ZIL-618 — is our Confluence doc on the standalone flow still accurate?
 ```
 Expected: Fetch doc, compare to current YouTrack + git state, propose update if stale.
 
 **Example 3 — Doc freshness audit**
 ```
-/zilch-xel-knowledge /doc-audit space=Zilch
+/zilch-knowledge /doc-audit space=Zilch
 ```
 Expected: Produce freshness report table.
 
 **Example 4 — Validation gate enforcement**
 ```
-/zilch-xel-knowledge
+/zilch-knowledge
 Should we deprecate the customerReference field?
 ```
 Expected: Search Confluence for existing decisions, surface them, ask user to confirm before any write.
